@@ -1,6 +1,7 @@
 from Winequality import logger
 from Winequality.pipeline.stage_01_data_ingstion import DataIngestionTrainingPipeline
 from Winequality.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
+from Winequality.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline
 
 
 
@@ -21,6 +22,18 @@ try:
    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
    obj = DataValidationTrainingPipeline()
    obj.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+
+STAGE_NAME = "Data Transformation stage"
+try:
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+   data_ingestion = DataTransformationTrainingPipeline()
+   data_ingestion.main()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
         logger.exception(e)
